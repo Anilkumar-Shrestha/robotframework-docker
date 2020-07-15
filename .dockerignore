@@ -1,0 +1,7 @@
+.git
+*.md
+testresults/
+output.xml
+report.html
+log.html
+venv
