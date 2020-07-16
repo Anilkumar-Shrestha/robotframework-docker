@@ -34,3 +34,8 @@ RUN wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd6
 	&& rm chromedriver_linux64.zip \
 	&& mv chromedriver /usr/local/bin \
 	&& chmod +x /usr/local/bin/chromedriver
+
+RUN mkdir -p testresults/
+VOLUME /project/testresults
+
+CMD ["robot","--outputdir","testresults/","googletest.robot"]
