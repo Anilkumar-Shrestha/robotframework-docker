@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  robotframework-docker:
+    image: kumarshresthaanil/robotframework-docker
+    volumes:
+        - testresults_volume:/project/testresults
+
+volumes:
+  testresults_volume:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /C/Users/nlshr/PycharmProjects/robotframework-docker/testresults
