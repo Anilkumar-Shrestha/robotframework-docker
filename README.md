@@ -38,30 +38,44 @@ Now there are two steps to use Docker.
 We are going to use the image from dockerhub that has already been created. [robotframework-docker-image](https://hub.docker.com/r/kumarshresthaanil/robotframework-docker)
 
 Run below command on the command line to pull the image from docker hub to your pc.
-> > > *docker pull kumarshresthaanil/robotframework-docker* 
+```
+docker pull kumarshresthaanil/robotframework-docker
+```
 
 If you want to go inside container and run the script and dig into container
-> > > *docker run -it --name robotframework-docker  kumarshresthaanil/robotframework-docker bash*
-> > > *robot googletest.robot*
+```
+docker run -it --name robotframework-docker  kumarshresthaanil/robotframework-docker bash
+```
+```
+robot googletest.robot
+```
 
 If you want to  run the script  from your computer and get the results in your local harddrive
-> > > *docker run -v [local folder location]:/project/testresults --name robotframework-docker  kumarshresthaanil/robotframework-docker*
+```
+docker run -v [local folder location]:/project/testresults --name robotframework-docker  kumarshresthaanil/robotframework-docker
+```
 
 ## Creating your own images and then use it.<a name="CreateOwnImage"></a>
 
 <P> For creating your image, you have to clone the project in your local drive.</p>
 
 * clone the project. 
-> > > *git clone https://github.com/Anilkumar-Shrestha/robotframework-docker.git*
+```
+git clone https://github.com/Anilkumar-Shrestha/robotframework-docker.git
+```
 * After you have cloned the repository on your local drive, start command line and go to the project folder robotframework-docker you just cloned. You should be in the path where Dockerfile file exist.
 * Run the command : 
-> > > *docker build -t <'dockerhub-username'>/robotframework-docker .*
+```
+docker build -t <'dockerhub-username'>/robotframework-docker .
+```
 
 > *You can give your own tag name instead of robotframework-docker mentioned in command above. 'dockerhub-username' is the username of the account dockerhub. Please do dont forget the dot in the end which represent the current dir path of Dockerfile*
 * You can check if image is build using command: docker images
 > > *Congratulations!! if image is successfully build.*
 * Now you can push your image to your docker hub account using command. 
-> > > *docker push <'dockerhub-username'>/robotframework-docker*
+```
+docker push <'dockerhub-username'>/robotframework-docker
+```
 * After this you can follow the "Using the Ready-Made images" steps.
 
 Congratulations Again, you have successfully run the test.
