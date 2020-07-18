@@ -7,6 +7,9 @@ This is an example of running robotframework selenium test in headlesschrome thr
 3. [Using the Ready-Made image](#readyMadeImage)
 4. [Creating your own images and then use it.](#CreateOwnImage)
 5. [Using Docker-Compose command](#DockerComposeCommand)
+   > 5.1 [Why Docker-Compose command?](#dockerComposeWhy) 
+   
+   > 5.2 [how to use Docker-Compose](#howtouseDockercompose)
 
 ## Overview of Docker and its importance in automation CI testing. <a name="overview"></a>
 
@@ -70,7 +73,10 @@ docker build -t <'dockerhub-username'>/robotframework-docker .
 ```
 
 > *You can give your own tag name instead of robotframework-docker mentioned in command above. 'dockerhub-username' is the username of the account dockerhub. Please do dont forget the dot in the end which represent the current dir path of Dockerfile*
-* You can check if image is build using command: docker images
+* You can check if image is build using command: 
+```
+docker images
+```
 > > *Congratulations!! if image is successfully build.*
 * Now you can push your image to your docker hub account using command. 
 ```
@@ -79,8 +85,47 @@ docker push <'dockerhub-username'>/robotframework-docker
 * After this you can follow the "Using the Ready-Made images" steps.
 
 Congratulations Again, you have successfully run the test.
-But Did you figureout something, you need to run the docker run command each time you need to run the test. Thats easy part but that can ease more with docker-compose yaml file.
+But Did you figureout something, you need to run the docker run command each time you need to run the test. Thats easy part but that can ease more with docker-compose command.
 Lets run the test in container using image through Docker-Compose command.
 
-## Using Docker-Compose command <a name="DockerComposeCommand"></a>
-****TODO**
+## Using Docker-Compose command <a name="DockerComposeCommand"></a> 
+  ### 1. Why Docker-Compose command? <a name="dockerComposeWhy"></a>
+   >Using Docker-compose command, we can fit all the setup into one configuration file which can be executed with one line command which makes your task more easier. Also, we can simplifly running multiple docker container and attaching them to external networks using 
+docker-compose command.
+    
+  ### 2. How to use Docker-Compose.<a name="howtouseDockercompose"></a>
+  > To use docker compose, we need one configuration file. docker-compose.yml. In this file you will define which services(containers) make
+up your set up and how they behave and interact. These services can include any public Docker images as well as your own, defined in local
+>Dockerfile. After defining a configuration file, the only thing that you have to do is run the configuration, which starts all your containers, take care of 
+>all your dependencies, when you want it and in the order you want it. Tearing down the setup is also really.
+
+<p> For how the Docker-compose works and syntax you can refer its 
+
+[original Docker-compose documentation](https://docs.docker.com/compose) </p>
+
+Our Docker-compose.yml file contents is    
+```
+version: '3.8'
+services:
+  robotframework-docker:
+    image: kumarshresthaanil/robotframework-docker
+    volumes:
+        - testresults_volume:/project/testresults
+
+volumes:
+  testresults_volume:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /C/Users/nlshr/PycharmProjects/robotframework-docker/testresults
+```
+After the complete of setup file, test can be run using a single command below:
+```
+docker-compose up
+```
+After the tests are finished with the execution, this environment
+can be turned off using the command. 
+```
+docker-compose down
+```
