@@ -13,7 +13,7 @@ pipeline{
 
         stage('Execute Tests') {
             steps {
-                sh 'docker-compose up'
+                bat label: '', script: 'docker-compose up'
                 echo 'executing test....'
             }
 
