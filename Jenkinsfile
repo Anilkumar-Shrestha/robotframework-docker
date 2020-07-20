@@ -3,16 +3,18 @@ pipeline{
 
     stages{
 
-        stage("checkout SCM") {
+        stage('Checkout Code') {
             steps {
-                
+                cleanWs()
+                git branch: "master", url:'https://github.com/Anilkumar-Shrestha/robotframework-docker.git'
                 echo 'checking out scm....'
             }
         }
 
-        stage("build images") {
+        stage('Execute Tests') {
             steps {
-                echo 'building images....'
+                sh 'docker-compose up'
+                echo 'executing test....'
             }
 
         }
