@@ -129,3 +129,5 @@ can be turned off using the command.
 ```
 docker-compose down
 ```
+
+I hope now, you can make your own robotframework docker images and run the testresults with single command.
