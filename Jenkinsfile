@@ -5,13 +5,14 @@ pipeline{
 
         stage("checkout SCM") {
             steps {
-            echo 'checking out scm....'
+                
+                echo 'checking out scm....'
             }
         }
 
         stage("build images") {
             steps {
-            echo 'building images....'
+                echo 'building images....'
             }
 
         }
