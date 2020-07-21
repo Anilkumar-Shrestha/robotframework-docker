@@ -60,6 +60,7 @@ RUN wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd6
 RUN mkdir -p testresults/
 VOLUME /project/testresults
 
-CMD ["robot","--outputdir","testresults/","googletest.robot"]
+CMD ["sh","runsuite.sh"]  # added sh script since dockerfile cannot run multiple CMD in dockerfile
+#CMD ["robot","--outputdir","testresults/","googletest.robot"]
 # for detail robotmetrcis check :https://github.com/adiralashiva8/robotframework-metrics
-CMD ["robotmetrics","-M","../outputReportMetrics.html","--inputpath","./testresults/","--output","output.xml","--log","log.html"]
+#CMD ["robotmetrics","-M","../outputReportMetrics.html","--inputpath","./testresults/","--output","output.xml","--log","log.html"]
