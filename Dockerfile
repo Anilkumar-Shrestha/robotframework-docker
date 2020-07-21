@@ -23,6 +23,7 @@ RUN apt-get update \
 #ENV SELENIUM_LIBRARY_VERSION 4.4.0
 #ENV REQUESTS_VERSION 2.24.0
 #ENV JSON_LIBRARY_VERSION 0.3.1
+#ENV METRICS_VERSION 0.3.1
 #ENV XVFB_VERSION 1.2.2
 
 
@@ -32,6 +33,7 @@ RUN python3 -m pip install robotframework && \
     python3 -m pip install robotframework-seleniumlibrary && \
     python3 -m pip install robotframework-requests && \
     python3 -m pip install robotframework-jsonlibrary && \
+    python3 -m pip install robotframework-metrics && \
     python3 -m pip install robotframework-xvfb
 
 
@@ -59,3 +61,5 @@ RUN mkdir -p testresults/
 VOLUME /project/testresults
 
 CMD ["robot","--outputdir","testresults/","googletest.robot"]
+# for detail robotmetrcis check :https://github.com/adiralashiva8/robotframework-metrics
+CMD ["robotmetrics","-M","../outputReportMetrics.html","--inputpath","./testresults/","--output","output.xml","--log","log.html"]
