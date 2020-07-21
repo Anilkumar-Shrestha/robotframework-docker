@@ -15,6 +15,7 @@ pipeline{
             steps {
                 bat label: '', script: 'docker-compose up'
                 echo 'executing test....'
+                bat label: '', script: 'docker-compose down -v'
             }
 
         }
